@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="page-container">
       <div className="page-header">
         <h1>404</h1>
-        <h2>Page Not Found</h2>
+        <h2>Client side error</h2>
       </div>
 
       <Link href="/" className="link">

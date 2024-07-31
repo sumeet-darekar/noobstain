@@ -1,29 +1,23 @@
 import {
   GithubLogo,
   LinkedinLogo,
-  StackOverflowLogo,
-  YoutubeLogo,
+  TwitterLogo,
 } from "@phosphor-icons/react";
 
 export const socials = [
   {
     name: "Github",
-    href: "https://github.com/zeyadetman",
+    href: "https://github.com/sumeet-darekar",
     icon: GithubLogo,
   },
   {
     name: "Linkedin",
-    href: "https://www.linkedin.com/in/zeyadetman/",
+    href: "https://www.linkedin.com/in/sumeet-darekar-07569a1b4",
     icon: LinkedinLogo,
   },
   {
-    name: "StackOverflow",
-    href: "https://stackoverflow.com/users/5721245/zeyad-etman",
-    icon: StackOverflowLogo,
-  },
-  {
-    name: "Youtube",
-    href: "https://www.youtube.com/@zeyadetman",
-    icon: YoutubeLogo,
+    name: "Twitter",
+    href: "https://x.com/noobstain_/",
+    icon: TwitterLogo,
   },
 ];

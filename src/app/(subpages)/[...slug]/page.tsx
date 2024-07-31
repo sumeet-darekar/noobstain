@@ -30,7 +30,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Zeyad Etman | ${page.title}`,
+    title: `Sumeet Darekar | ${page.title}`,
     description: page.description,
   };
 }
