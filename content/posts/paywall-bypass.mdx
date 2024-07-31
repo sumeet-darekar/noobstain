@@ -1,0 +1,34 @@
+---
+title: Paywall bypass through race condition
+date: "2024-07-30"
+author: noobstain
+tags:
+  - race condition
+  - web security
+  - bug bounty
+comments: true
+---
+Disclaimer : For security reasons, I’ve replaced the original platform name with example.com and am checking the blog feature on my website. So I have taken a simple bug.
+
+## Introduction
+I discovered a race condition vulnerability while testing the email capabilities of example.com. The platform allows users to share templates via email, but free-tier users are limited to a certain number of emails. In contrast, paid subscribers can share templates with as many recipients as they want.
+
+### first what is race condition
+In the simplest terms, a race condition occurs when two or more processes attempt to access and manipulate the `same resource simultaneously/parallelly`.
+
+#### Process
+Start by choosing your favorite template from the free tier. This is important because you want your test emails to look great!. 
+Once you’ve selected a template, click the preview button. This step lets you see how your email will appear before you actually send it out.
+Next, After turning on the `proxy`. This is where the magic begins, as it allows you to intercept the request that’s being sent to example.com
+
+```
+// In Burp Suite, enable intercept
+Proxy > Intercept > Intercept is on
+```
+then send that request to repeater, create about 20 duplicates of the intercepted request group them all together for the next step
+```javascript
+left click on tab [In repeater] > add to group > create group > specify name
+```
+Now it’s time for the grand finale! Send all the requests at the same time. using send group [parallel] and then see the magic in email inbox.
+
+And we successfully bypass the paywall ^_^.
