@@ -11,7 +11,7 @@ export default function Home() {
       <p className="text-sm">
         Security student 🙲 Programmer
         <br />
-        <br />I am a security professional focused on client-side, API and web related vulnerabilities,
+        <br />I am a security student focused on Oauth, Authorization, API and web related vulnerabilities,
          currently learning Android security. I enjoy identifying and mitigating vulnerabilities-basically,
           I break things to make them stronger (and maybe to impress my cat)
         . 
