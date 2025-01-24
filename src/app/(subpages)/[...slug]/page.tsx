@@ -54,12 +54,13 @@ export default async function PagePage({ params }: PageProps) {
         <h1>{page.header}</h1>
         <h2>{page.description}</h2>
       </div>
-       <iframe
-src="https://aichatbot.sendbird.com/playground/index.html?app_id=DE440E09-5C5C-49A7-A842-C1A90344D5C3&bot_id=5Tn9EKJZJIHVl4Oz4P_Ya&region=ap-5"
-width="100%"
-style="height: 100%; min-height: 700px"
-frameborder="0"
+      <iframe
+  src="https://aichatbot.sendbird.com/playground/index.html?app_id=DE440E09-5C5C-49A7-A842-C1A90344D5C3&bot_id=5Tn9EKJZJIHVl4Oz4P_Ya&region=ap-5"
+  width="100%"
+  style={{ height: "100%", minHeight: "700px" }} // Corrected style syntax
+  frameBorder="0"
 ></iframe>
+
 
       <main className="text-sm">
         <Mdx code={page.body.code} />
