@@ -97,7 +97,7 @@ export default function ReconLauncher() {
         </div>
       </section>
       <div className="mt-8 text-sm text-muted text-center">
-        This tool was inspired by <a href="https://x.com/rez0__">rez0__'s</a> <a href="https://josephthacker.com/subdomain_link_launcher" target="black">Subdomain Link Launcher</a>.
+        This tool was inspired by <a href="https://x.com/rez0__">rez0__</a> <a href="https://josephthacker.com/subdomain_link_launcher" target="black">Subdomain Link Launcher</a>.
       </div>
     </div>
   );
