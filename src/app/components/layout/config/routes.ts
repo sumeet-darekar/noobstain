@@ -12,5 +12,9 @@ export const routes: Route[] = [
   {
     name: "Blog",
     href: "/posts",
+  },
+  {
+    name: "Recon Launcher",
+    href: "/sigle-target-recon",
   }
 ];
