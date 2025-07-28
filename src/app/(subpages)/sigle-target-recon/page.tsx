@@ -75,7 +75,7 @@ export default function ReconLauncher() {
           When you enter a domain and click <strong>Launch Recon</strong>, this tool will open multiple tabs with searches across various platforms:
         </p>
         <ul>
-          <li>Google site search</li>
+          <li>Google site search (more on <a href="https://addons.mozilla.org/en-US/firefox/addon/dorkme/">DorkMe</a>) tool.</li>
           <li>GitHub domain search</li>
           <li>Wayback Machine (historical snapshots)</li>
           <li>Shodan (exposed services)</li>
