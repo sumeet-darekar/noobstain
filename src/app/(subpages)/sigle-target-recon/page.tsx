@@ -39,7 +39,7 @@ export default function ReconLauncher() {
       `https://faviconhasher.codejavu.tech/`,
       `https://www.virustotal.com/vtapi/v2/domain/report?apikey=34a90170989b555d1de605607d99bc7242d35674a763fb64abc3eb9ba694c97f&domain=${cleanDomain}`,
       `https://chatgpt.com/?q=Search the web for anything interesting, suspicious, or security-related about the domain ${cleanDomain}. Look for exposed endpoints, API keys, open directories, misconfigured services, GitHub leaks, pastes, archived content, or anything that might be useful for bug bounty hunting or OSINT.`,
-      `https://leakix.net/search?scope=services&q=${cleanDomain}`,
+      `https://leakix.net/search?scope=service&q=${cleanDomain}`,
       `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`
     ];
 
