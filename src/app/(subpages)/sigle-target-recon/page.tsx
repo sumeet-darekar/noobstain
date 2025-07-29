@@ -25,17 +25,19 @@ export default function ReconLauncher() {
 
     const searchUrls = [
       `https://www.google.com/search?q=site:${cleanDomain}`,
+      `https://index.commoncrawl.org/collinfo.json#format=https://index.commoncrawl.org/<id>?url=${cleanDomain}/*`,
       `https://github.com/search?q=${cleanDomain}&type=code`,
-      `https://web.archive.org/web/20250000000000*/${cleanDomain}`,
+      `https://web.archive.org/cdx/search/cdx?url=${cleanDomain}/*&collapse=urlkey&fl=original`,
       `https://www.shodan.io/search?query=hostname:${cleanDomain}`,
       `https://securitytrails.com/domain/${cleanDomain}/dns`,
       `https://search.censys.io/search?resource=hosts&q=${cleanDomain}`,
       `https://crt.sh/?q=${cleanDomain}`,
       `https://intelx.io/?s=${cleanDomain}`,
-      `https://urlscan.io/domain/${cleanDomain}`,
+      `https://otx.alienvault.com/api/v1/indicators/domain/${cleanDomain}/url_list`,
+      `https://urlscan.io/api/v1/search/?q=domain:${cleanDomain}&size=10000`,
       `https://fofa.so/result?qbase64=${toBase64(cleanDomain)}`,
       `https://faviconhasher.codejavu.tech/`,
-      `https://www.virustotal.com/gui/domain/${cleanDomain}`,
+      `https://www.virustotal.com/vtapi/v2/domain/report?apikey=34a90170989b555d1de605607d99bc7242d35674a763fb64abc3eb9ba694c97f&domain=${cleanDomain}`,
       `https://chatgpt.com/?q=Search the web for anything interesting, suspicious, or security-related about the domain ${cleanDomain}. Look for exposed endpoints, API keys, open directories, misconfigured services, GitHub leaks, pastes, archived content, or anything that might be useful for bug bounty hunting or OSINT.`,
       `https://leakix.net/search?scope=leak&q=${cleanDomain}`,
       `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`
@@ -82,6 +84,9 @@ export default function ReconLauncher() {
           <li>SecurityTrails (DNS history and subdomains)</li>
           <li>Censys (certificates and infrastructure)</li>
           <li>crt.sh (certificates)</li>
+          <li>IntelX (OSINT search engine)</li>
+          <li>AlienVault OTX (threat intelligence)</li>
+          <li>Common Crawl (web archive data)</li>
           <li>Phonebook.cz (passive DNS data)</li>
           <li>urlscan.io (domain-level scans and links)</li>
           <li>FOFA (open source threat intelligence)</li>
