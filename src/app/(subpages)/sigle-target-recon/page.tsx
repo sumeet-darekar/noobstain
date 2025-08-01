@@ -42,7 +42,8 @@ export default function ReconLauncher() {
       `https://chatgpt.com/?q=Search the web for anything interesting, suspicious, or security-related about the domain ${cleanDomain}. Look for exposed endpoints, API keys, open directories, misconfigured services, GitHub leaks, pastes, archived content, or anything that might be useful for bug bounty hunting or OSINT.`,
       `https://leakix.net/search?scope=service&q=${cleanDomain}`,
       `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`,
-      `https://hub.docker.com/search?q=${domainNameOnly}`
+      `https://hub.docker.com/search?q=${domainNameOnly}`,
+      `https://gitlab.com/search?search=${domainNameOnly}`,
     ];
 
     searchUrls.forEach((url) => {
@@ -98,6 +99,7 @@ export default function ReconLauncher() {
             <li>LeakIX (search for leaks related to the domain)</li>
             <li>ZoomEye (search for exposed services and vulnerabilities)</li>
           <li>Docker Hub (search for Docker images related to the domain)</li>
+          <li>GitLab (search for repositories related to the domain)</li>
         </ul>
         <div className="prose dark:prose-invert mb-6">
           <strong>Note:</strong> Your browser may block pop-ups the first time you use this tool.<br />
