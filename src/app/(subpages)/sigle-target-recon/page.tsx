@@ -23,6 +23,7 @@ export default function ReconLauncher() {
       .replace(/^https?:\/\//i, "")
       .replace(/\/.*$/, "");
 
+    const domainNameOnly = cleanDomain.split(".").slice(-2, -1)[0] || cleanDomain.split(".")[0];
     const searchUrls = [
       `https://www.google.com/search?q=site:${cleanDomain}`,
       `https://index.commoncrawl.org/collinfo.json#format=https://index.commoncrawl.org/<id>?url=${cleanDomain}/*`,
@@ -40,7 +41,8 @@ export default function ReconLauncher() {
       `https://www.virustotal.com/vtapi/v2/domain/report?apikey=34a90170989b555d1de605607d99bc7242d35674a763fb64abc3eb9ba694c97f&domain=${cleanDomain}`,
       `https://chatgpt.com/?q=Search the web for anything interesting, suspicious, or security-related about the domain ${cleanDomain}. Look for exposed endpoints, API keys, open directories, misconfigured services, GitHub leaks, pastes, archived content, or anything that might be useful for bug bounty hunting or OSINT.`,
       `https://leakix.net/search?scope=service&q=${cleanDomain}`,
-      `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`
+      `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`,
+      `https://hub.docker.com/search?q=${domainNameOnly}`
     ];
 
     searchUrls.forEach((url) => {
@@ -95,6 +97,7 @@ export default function ReconLauncher() {
           <li>ChatGPT (search for any interesting, suspicious, or security-related information)</li>
             <li>LeakIX (search for leaks related to the domain)</li>
             <li>ZoomEye (search for exposed services and vulnerabilities)</li>
+          <li>Docker Hub (search for Docker images related to the domain)</li>
         </ul>
         <div className="prose dark:prose-invert mb-6">
           <strong>Note:</strong> Your browser may block pop-ups the first time you use this tool.<br />
