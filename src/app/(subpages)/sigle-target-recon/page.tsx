@@ -26,7 +26,6 @@ export default function ReconLauncher() {
     const domainNameOnly = cleanDomain.split(".").slice(-2, -1)[0] || cleanDomain.split(".")[0];
     const searchUrls = [
       `https://www.google.com/search?q=site:${cleanDomain}`,
-      `https://index.commoncrawl.org/collinfo.json#format=https://index.commoncrawl.org/<id>?url=${cleanDomain}/*`,
       `https://github.com/search?q=${cleanDomain}&type=code`,
       `https://web.archive.org/cdx/search/cdx?url=${cleanDomain}/*&collapse=urlkey&fl=original`,
       `https://www.shodan.io/search?query=hostname:${cleanDomain}`,
@@ -44,6 +43,7 @@ export default function ReconLauncher() {
       `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`,
       `https://hub.docker.com/search?q=${domainNameOnly}`,
       `https://gitlab.com/search?search=${domainNameOnly}`,
+      `https://hunter.how/list?searchValue=${cleanDomain}`
     ];
 
     searchUrls.forEach((url) => {
@@ -89,7 +89,7 @@ export default function ReconLauncher() {
           <li>crt.sh (certificates)</li>
           <li>IntelX (OSINT search engine)</li>
           <li>AlienVault OTX (threat intelligence)</li>
-          <li>Common Crawl (web archive data)</li>
+          <li>Hunter.how (search for exposed services and vulnerabilities)</li>
           <li>Phonebook.cz (passive DNS data)</li>
           <li>urlscan.io (domain-level scans and links)</li>
           <li>FOFA (open source threat intelligence)</li>
