@@ -43,7 +43,8 @@ export default function ReconLauncher() {
       `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`,
       `https://hub.docker.com/search?q=${domainNameOnly}`,
       `https://gitlab.com/search?search=${domainNameOnly}`,
-      `https://hunter.how/list?searchValue=${cleanDomain}`
+      `https://hunter.how/list?searchValue=${cleanDomain}`,
+      `https://www.postman.com/search?q=${domainNameOnly}&type=all&workspaceType=all&isPrivateNetworkActive=false`
     ];
 
     searchUrls.forEach((url) => {
@@ -100,6 +101,7 @@ export default function ReconLauncher() {
             <li>ZoomEye (search for exposed services and vulnerabilities)</li>
           <li>Docker Hub (search for Docker images related to the domain)</li>
           <li>GitLab (search for repositories related to the domain)</li>
+          <li>Postman (search for APIs related to the domain)</li>
         </ul>
         <div className="prose dark:prose-invert mb-6">
           <strong>Note:</strong> Your browser may block pop-ups the first time you use this tool.<br />
