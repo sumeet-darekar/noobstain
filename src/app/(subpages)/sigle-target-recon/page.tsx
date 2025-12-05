@@ -44,7 +44,8 @@ export default function ReconLauncher() {
       `https://hub.docker.com/search?q=${domainNameOnly}`,
       `https://gitlab.com/search?search=${domainNameOnly}`,
       `https://hunter.how/list?searchValue=${cleanDomain}`,
-      `https://www.postman.com/search?q=${domainNameOnly}&type=all&workspaceType=all&isPrivateNetworkActive=false`
+      `https://www.postman.com/search?q=${domainNameOnly}&type=all&workspaceType=all&isPrivateNetworkActive=false`,
+      `https://huggingface.co/search/full-text?q=${domainNameOnly}`
     ];
 
     searchUrls.forEach((url) => {
@@ -102,6 +103,7 @@ export default function ReconLauncher() {
           <li>Docker Hub (search for Docker images related to the domain)</li>
           <li>GitLab (search for repositories related to the domain)</li>
           <li>Postman (search for APIs related to the domain)</li>
+          <li>Hugging Face (search for machine learning models related to the domain)</li>
         </ul>
         <div className="prose dark:prose-invert mb-6">
           <strong>Note:</strong> Your browser may block pop-ups the first time you use this tool.<br />
