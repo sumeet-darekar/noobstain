@@ -1,7 +1,7 @@
 "use client";
 import { config } from "@/config";
 import { GithubLogo, TwitterLogo } from "@phosphor-icons/react";
-import Giscus from "@giscus/react";
+// Giscus removed
 import { Post } from "contentlayer/generated";
 
 interface PostFooterProps {
@@ -43,20 +43,7 @@ export const PostFooter = ({ post }: PostFooterProps) => {
         </div>
       </div>
 
-      <Giscus
-        repo="zeyadetman/zeyadetman.com"
-        repoId="MDEwOlJlcG9zaXRvcnk0MDU4NjIyODk="
-        category="Announcements"
-        categoryId="DIC_kwDOGDD3kc4COmmU"
-        mapping="pathname"
-        strict="0"
-        reactionsEnabled="1"
-        emitMetadata="1"
-        inputPosition="top"
-        theme={"dark_dimmed"}
-        lang="en"
-        loading="lazy"
-      />
+      {/* Giscus comments removed */}
     </>
   );
 };

@@ -9,7 +9,7 @@ export const renderSocials = () => {
         }}
         className="btn btn-ghost btn-circle btn-sm"
       >
-        <social.icon size={16} />
+        <social.icon size={30} />
       </button>
     </li>
   ));

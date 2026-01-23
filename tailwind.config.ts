@@ -12,7 +12,12 @@ const config: Config = {
     },
     extend: {
       colors: {
-        border: "#232323",
+        border: "var(--border)",
+        primary: "var(--accent)",
+        "site-bg": "var(--bg)",
+        "site-bg-2": "var(--bg-2)",
+        text: "var(--text)",
+        muted: "var(--muted)",
       },
     },
   },

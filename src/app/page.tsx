@@ -8,16 +8,16 @@ export default function Home() {
         <h2>It&apos;s Sumeet Darekar</h2>
       </div>
 
-      <p className="text-sm">
-        Security student 🙲 Programmer
+      <p className="text-m">
+        
         <br />
-        <br />I am a security student focused on Oauth, Authorization, API and web related vulnerabilities,
-         currently learning Android security. I enjoy identifying and mitigating vulnerabilities-basically,
-          I break things to make them stronger (and maybe to impress my cat)
-        . 
-        <br />
-        <br />If you want to contact me, let’s contact via{" "}
-        <a className="link" href="mailto:sumeetdarekar2003.com">
+     
+    A security researcher from India with about 1 years of experience in the field. I work full-time in application security and spend my free time doing bug bounties, mainly on <a href="https://hackerone.com/noobstain" target="blank">HackerOne</a>, and hold CEH and CNSP certifications.
+<br />   <br />
+    I also work on finding issues in open-source codebases to improve my code review skills.
+        
+        If you want to contact me, let’s contact via{" "}
+        <a className="link" href="mailto:noobstain@wearehackerone.com">
           email.
         </a>
       </p>

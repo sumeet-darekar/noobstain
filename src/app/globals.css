@@ -3,12 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --border: #232323;
+  --bg: #0b0b0b; /* primary page background */
+  --bg-2: #0f0f0f; /* slightly lighter for surfaces */
+  --text: #e6e6e6; /* main text */
+  --muted: #9aa0a6; /* secondary text */
+  --accent: #ffd86b; /* warm accent for links */
+  --border: #1f1f1f;
+  --pc: var(--muted);
 }
 
 @layer base {
   html {
     scrollbar-gutter: stable;
+    font-size: 18px; /* slightly larger base font */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   input::placeholder {
@@ -18,24 +27,36 @@
 
 @layer components {
   .prose * {
-    @apply text-secondary-content;
+    color: var(--muted);
+  }
+
+  /* Allow prose to flow full-width inside our container (avoid narrow squeeze) */
+  .prose {
+    max-width: none;
   }
 
   .full-article .prose * {
-    @apply text-primary-content/95;
+    color: color-mix(in srgb, var(--text) 95%, transparent);
   }
 
   .full-article .prose pre {
-    background-color: #2b2b2b;
+    background-color: #111111;
     direction: ltr;
   }
 
   .container {
-    @apply mx-auto max-w-[40rem] w-full;
+    @apply mx-auto w-full;
+    max-width: 88ch; /* wider comfortable measure for reading */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .page-container {
     @apply flex flex-col gap-8 mt-10 prose;
+    max-width: 880px; /* increased slightly */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .page-header {
@@ -55,7 +76,7 @@
 
   .page-header h1,
   .page-header .prose h1 {
-    @apply text-primary-content;
+    color: var(--text);
   }
 
   .post-viewer {
@@ -102,10 +123,19 @@
 
 .prose .link,
 .link {
-  @apply hover:text-primary-content/80 text-primary-content/70 w-fit break-words;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover,
+.link:hover {
+  color: color-mix(in srgb, var(--accent) 80%, black);
 }
 
 .prose .badge,
 .badge {
-  @apply uppercase text-xs bg-secondary-content text-primary rounded-md font-medium;
+  @apply uppercase text-xs rounded-md font-medium;
+  background-color: var(--bg-2);
+  color: var(--muted);
 }
