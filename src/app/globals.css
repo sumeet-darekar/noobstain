@@ -139,3 +139,51 @@
   background-color: var(--bg-2);
   color: var(--muted);
 }
+
+/* Mobile responsiveness tweaks */
+@media (max-width: 640px) {
+  html {
+    font-size: 16px; /* slightly reduce on small screens to avoid crowding */
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+
+  .page-container {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* keep readable line-length and spacing on small screens */
+  .prose {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Make images, iframes and videos fluid */
+  .prose img,
+  .prose video,
+  .prose iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Allow code blocks to scroll horizontally on mobile */
+  .prose pre {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: pre;
+  }
+
+  .post-viewer {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
