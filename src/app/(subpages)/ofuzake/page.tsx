@@ -91,7 +91,7 @@ export default function OfuzakePage() {
                 <div className="w-full aspect-video rounded overflow-hidden border border-gray-700">
                     <iframe
                         className="w-full h-full"
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1"
                         title="Rick Astley - Never Gonna Give You Up"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
