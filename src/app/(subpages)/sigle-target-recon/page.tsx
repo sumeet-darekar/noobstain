@@ -38,7 +38,7 @@ export default function ReconLauncher() {
       `https://fofa.so/result?qbase64=${toBase64(cleanDomain)}`,
       `https://faviconhasher.codejavu.tech/`,
       `https://www.virustotal.com/vtapi/v2/domain/report?apikey=34a90170989b555d1de605607d99bc7242d35674a763fb64abc3eb9ba694c97f&domain=${cleanDomain}`,
-      `https://chatgpt.com/?q=Search the web for anything interesting, suspicious, or security-related about the domain ${cleanDomain}. Look for exposed endpoints, API keys, open directories, misconfigured services, GitHub leaks, pastes, archived content, or anything that might be useful for bug bounty hunting or OSINT.`,
+      `https://grok.com/?q=Search the web for anything interesting, suspicious, or security-related about the domain ${cleanDomain}. Look for exposed endpoints, API keys, open directories, misconfigured services, GitHub leaks, pastes, archived content, or anything that might be useful for bug bounty hunting or OSINT.`,
       `https://leakix.net/search?scope=service&q=${cleanDomain}`,
       `https://www.zoomeye.ai/searchResult?q=${toBase64(cleanDomain)}`,
       `https://hub.docker.com/search?q=${domainNameOnly}`,
@@ -59,7 +59,7 @@ export default function ReconLauncher() {
         <h2>Recon Launcher</h2>
         <h5>
           This tool is a target reconnaissance launcher designed to assist security researchers, bug bounty hunters, and penetration testers in quickly gathering publicly available intelligence about a target domain .
-      
+
         </h5>
       </div>
       <div className="flex flex-col gap-4 max-w-md">
@@ -82,7 +82,7 @@ export default function ReconLauncher() {
           When you enter a domain and click <strong>Launch Recon</strong>, this tool will open multiple tabs with searches across various platforms:
         </p>
         <ul>
-          <li>Google site search (more on <a href="https://addons.mozilla.org/en-US/firefox/addon/dorkme/" target="blank">DorkMe</a> tool).</li>
+          <li>Google site search (more on <a href="/dork" target="blank">dork</a> tool).</li>
           <li>GitHub domain search</li>
           <li>Wayback Machine (historical snapshots)</li>
           <li>Shodan (exposed services)</li>
@@ -98,8 +98,8 @@ export default function ReconLauncher() {
           <li>Favicon Hasher (hash lookup to detect reused icons across services)</li>
           <li>VirusTotal (domain reputation and security checks)</li>
           <li>ChatGPT (search for any interesting, suspicious, or security-related information)</li>
-            <li>LeakIX (search for leaks related to the domain)</li>
-            <li>ZoomEye (search for exposed services and vulnerabilities)</li>
+          <li>LeakIX (search for leaks related to the domain)</li>
+          <li>ZoomEye (search for exposed services and vulnerabilities)</li>
           <li>Docker Hub (search for Docker images related to the domain)</li>
           <li>GitLab (search for repositories related to the domain)</li>
           <li>Postman (search for APIs related to the domain)</li>
