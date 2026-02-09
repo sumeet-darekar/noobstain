@@ -2,6 +2,13 @@
 import { useRef, useState } from "react";
 
 type DorkKey = keyof typeof dorkQueries;
+type SearchEngine = 'google' | 'bing' | 'duckduckgo';
+
+const searchEngines: { key: SearchEngine; name: string; color: string }[] = [
+    { key: 'google', name: 'Google', color: '#4285F4' },
+    { key: 'bing', name: 'Bing', color: '#00809D' },
+    { key: 'duckduckgo', name: 'DuckDuckGo', color: '#DE5833' },
+];
 
 const dorkQueries = {
     basic: 'site:{domain} ext:php inurl:?',
@@ -160,13 +167,31 @@ const dorkDescriptions: Record<DorkKey, string> = {
     securitytxt: "Security.txt files with bounty programs"
 };
 
-export default function GoogleDorkLauncher() {
+export default function DorkLauncher() {
     const inputRef = useRef<HTMLInputElement>(null);
-    const [selectedDorks, setSelectedDorks] = useState<Set<DorkKey>>(new Set(Object.keys(dorkQueries) as DorkKey[]));
+    const [selectedDorks, setSelectedDorks] = useState<Set<DorkKey>>(new Set());
+    const [selectedEngines, setSelectedEngines] = useState<Set<SearchEngine>>(new Set());
 
-    function buildGoogleSearchUrl(query: string, domain: string): string {
+    function buildSearchUrl(engine: SearchEngine, query: string, domain: string): string {
         const processedQuery = query.replace(/\{domain\}/g, domain);
-        return `https://www.google.com/search?q=${encodeURIComponent(processedQuery)}`;
+        switch (engine) {
+            case 'google':
+                return `https://www.google.com/search?q=${encodeURIComponent(processedQuery)}`;
+            case 'bing':
+                return `https://www.bing.com/search?q=${encodeURIComponent(processedQuery)}`;
+            case 'duckduckgo':
+                return `https://duckduckgo.com/?q=${encodeURIComponent(processedQuery)}`;
+        }
+    }
+
+    function toggleEngine(engine: SearchEngine) {
+        const newSelected = new Set(selectedEngines);
+        if (newSelected.has(engine)) {
+            newSelected.delete(engine);
+        } else {
+            newSelected.add(engine);
+        }
+        setSelectedEngines(newSelected);
     }
 
     function toggleDork(key: DorkKey) {
@@ -194,21 +219,28 @@ export default function GoogleDorkLauncher() {
             return;
         }
 
+        if (selectedEngines.size === 0) {
+            alert("Please select at least one search engine");
+            return;
+        }
+
         const cleanDomain = domain
             .replace(/^https?:\/\//i, "")
             .replace(/\/.*$/, "");
 
         const urls: string[] = [];
 
-        selectedDorks.forEach((key) => {
-            const query = dorkQueries[key];
-            if (Array.isArray(query)) {
-                query.forEach((q) => {
-                    urls.push(buildGoogleSearchUrl(q, cleanDomain));
-                });
-            } else {
-                urls.push(buildGoogleSearchUrl(query, cleanDomain));
-            }
+        selectedEngines.forEach((engine) => {
+            selectedDorks.forEach((key) => {
+                const query = dorkQueries[key];
+                if (Array.isArray(query)) {
+                    query.forEach((q) => {
+                        urls.push(buildSearchUrl(engine, q, cleanDomain));
+                    });
+                } else {
+                    urls.push(buildSearchUrl(engine, query, cleanDomain));
+                }
+            });
         });
 
         if (urls.length === 0) {
@@ -226,9 +258,9 @@ export default function GoogleDorkLauncher() {
     return (
         <div className="page-container">
             <div className="page-header">
-                <h2>Google Dork Launcher</h2>
+                <h2>Search Engine Dork Launcher</h2>
                 <h5>
-                    This tool helps security researchers, bug bounty hunters, and penetration testers quickly run Google dorks against a target domain to discover sensitive endpoints, exposed files, and potential vulnerabilities.
+                    This tool helps security researchers, bug bounty hunters, and penetration testers quickly run dorks against a target domain using Google, Bing, and DuckDuckGo to discover sensitive endpoints, exposed files, and potential vulnerabilities.
                 </h5>
             </div>
             <div className="flex flex-col gap-4 max-w-4xl">
@@ -238,6 +270,46 @@ export default function GoogleDorkLauncher() {
                     placeholder="Enter domain (e.g. example.com)"
                     className="input input-bordered w-full font-mono"
                 />
+
+                {/* Search Engine Selector */}
+                <div
+                    style={{
+                        display: 'flex',
+                        gap: '0.75rem',
+                        flexWrap: 'wrap',
+                        padding: '0.75rem',
+                        border: '1px solid var(--border)',
+                        borderRadius: '0.5rem',
+                        backgroundColor: 'var(--bg-2)',
+                    }}
+                >
+                    <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text)', marginRight: '0.5rem', alignSelf: 'center' }}>
+                        Search Engines:
+                    </span>
+                    {searchEngines.map((engine) => (
+                        <button
+                            key={engine.key}
+                            onClick={() => toggleEngine(engine.key)}
+                            className="transition"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '0.375rem',
+                                cursor: 'pointer',
+                                backgroundColor: selectedEngines.has(engine.key) ? 'var(--bg)' : 'transparent',
+                                color: 'var(--text)',
+                                border: selectedEngines.has(engine.key) ? '1px solid var(--border)' : '1px solid transparent',
+                                fontWeight: 600,
+                                fontSize: '0.875rem',
+                                opacity: selectedEngines.has(engine.key) ? 1 : 0.6,
+                            }}
+                        >
+                            {engine.name}
+                        </button>
+                    ))}
+                </div>
 
                 <div className="flex gap-2 mb-2">
                     <button
@@ -329,20 +401,9 @@ export default function GoogleDorkLauncher() {
 
                 <button
                     onClick={launchDorks}
-                    className="w-full py-2 px-4 rounded font-semibold transition"
-                    style={{
-                        backgroundColor: 'var(--bg-2)',
-                        color: 'var(--text)',
-                        border: '1px solid var(--border)',
-                    }}
-                    onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'var(--border)';
-                    }}
-                    onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'var(--bg-2)';
-                    }}
+                    className="w-full py-2 px-4 rounded font-semibold bg-gray-800 text-gray-100 hover:bg-gray-700 border border-gray-700 transition"
                 >
-                    Launch Google Dorks
+                    Launch Dorks ({selectedEngines.size} engine{selectedEngines.size !== 1 ? 's' : ''})
                 </button>
             </div>
 
@@ -362,8 +423,8 @@ export default function GoogleDorkLauncher() {
                 <div className="prose dark:prose-invert mb-6">
                     <strong>Note:</strong> Your browser may block pop-ups the first time you use this tool.<br />
                     You&apos;ll need to allow pop-ups for this site for the tool to work properly.<br />
-                    Google may rate-limit or show CAPTCHAs if too many searches are launched at once.<br />
-                    Consider deselecting some categories if you encounter issues.
+                    Search engines may rate-limit or show CAPTCHAs if too many searches are launched at once.<br />
+                    Consider deselecting some categories or search engines if you encounter issues.
                 </div>
             </section>
 
